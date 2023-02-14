@@ -158,6 +158,7 @@ mod tests {
     async fn db_test_get_many() {
         let config = RepositoryConfig::new(get("db.url").unwrap());
         let user_repository = UserRepository::new(config).await.unwrap();
+
         let users = user_repository.get_many(1, 0).await;
         assert!(users.len() > 0);
     }
@@ -166,8 +167,6 @@ mod tests {
     async fn db_test_create_user() {
         let config = RepositoryConfig::new(get("db.url").unwrap());
         let user_repository = UserRepository::new(config).await.unwrap();
-
-        let author_id = Uuid::parse_str("43ff49e9-0caf-42fa-8d0c-d7719dfc7229").unwrap();
 
         let user = User::new(Uuid::new_v4(), "Test user".to_string());
         let result = user_repository.add(&user).await;
@@ -179,6 +178,7 @@ mod tests {
     async fn db_test_update_user() {
         let config = RepositoryConfig::new(get("db.url").unwrap());
         let user_repository = UserRepository::new(config).await.unwrap();
+
         let mut user = user_repository.get_many(1, 0).await[0].clone();
         user.name = user.name + " updated";
         let result = user_repository.update(&user).await;
