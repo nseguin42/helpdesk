@@ -151,8 +151,6 @@ impl Repository<Ticket> for TicketRepository {
 
 #[cfg(test)]
 mod tests {
-    use time::OffsetDateTime;
-
     use super::*;
     use crate::utils::static_env::get;
 
