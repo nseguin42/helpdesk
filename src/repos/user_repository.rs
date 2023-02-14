@@ -155,7 +155,7 @@ mod tests {
     use crate::utils::static_env::get;
 
     #[actix_rt::test]
-    async fn test_get_many() {
+    async fn db_test_get_many() {
         let config = RepositoryConfig::new(get("db.url").unwrap());
         let user_repository = UserRepository::new(config).await.unwrap();
         let users = user_repository.get_many(1, 0).await;
@@ -163,7 +163,7 @@ mod tests {
     }
 
     #[actix_rt::test]
-    async fn test_create_user() {
+    async fn db_test_create_user() {
         let config = RepositoryConfig::new(get("db.url").unwrap());
         let user_repository = UserRepository::new(config).await.unwrap();
 
@@ -176,7 +176,7 @@ mod tests {
     }
 
     #[actix_rt::test]
-    async fn test_update_user() {
+    async fn db_test_update_user() {
         let config = RepositoryConfig::new(get("db.url").unwrap());
         let user_repository = UserRepository::new(config).await.unwrap();
         let mut user = user_repository.get_many(1, 0).await[0].clone();
@@ -187,7 +187,7 @@ mod tests {
     }
 
     #[actix_rt::test]
-    async fn test_delete_user() {
+    async fn db_test_delete_user() {
         let config = RepositoryConfig::new(get("db.url").unwrap());
         let user_repository = UserRepository::new(config).await.unwrap();
 

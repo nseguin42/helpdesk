@@ -155,7 +155,7 @@ mod tests {
     use crate::utils::static_env::get;
 
     #[actix_rt::test]
-    async fn test_get_many() {
+    async fn db_test_get_many() {
         let config = RepositoryConfig::new(get("db.url").unwrap());
         let ticket_repository = TicketRepository::new(config).await.unwrap();
         let tickets = ticket_repository.get_many(1, 0).await;
@@ -163,7 +163,7 @@ mod tests {
     }
 
     #[actix_rt::test]
-    async fn test_create_ticket() {
+    async fn db_test_create_ticket() {
         let config = RepositoryConfig::new(get("db.url").unwrap());
         let ticket_repository = TicketRepository::new(config).await.unwrap();
 
@@ -180,7 +180,7 @@ mod tests {
     }
 
     #[actix_rt::test]
-    async fn test_update_ticket() {
+    async fn db_test_update_ticket() {
         let config = RepositoryConfig::new(get("db.url").unwrap());
         let ticket_repository = TicketRepository::new(config).await.unwrap();
         let mut ticket = ticket_repository.get_many(1, 0).await[0].clone();
@@ -192,7 +192,7 @@ mod tests {
     }
 
     #[actix_rt::test]
-    async fn test_delete_ticket() {
+    async fn db_test_delete_ticket() {
         let config = RepositoryConfig::new(get("db.url").unwrap());
         let ticket_repository = TicketRepository::new(config).await.unwrap();
 
