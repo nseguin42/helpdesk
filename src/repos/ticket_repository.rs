@@ -1,3 +1,4 @@
+use time::OffsetDateTime;
 use tokio_postgres::Client;
 use uuid::Uuid;
 
@@ -130,7 +131,7 @@ impl Repository<Ticket> for TicketRepository {
                     &ticket.id,
                     &ticket.title,
                     &ticket.description,
-                    &ticket.updated,
+                    &Option::from(OffsetDateTime::now_utc()),
                 ],
             )
             .await?;
@@ -150,6 +151,8 @@ impl Repository<Ticket> for TicketRepository {
 
 #[cfg(test)]
 mod tests {
+    use time::OffsetDateTime;
+
     use super::*;
     use crate::utils::static_env::get;
 
